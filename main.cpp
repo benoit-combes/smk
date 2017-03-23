@@ -2,25 +2,27 @@
 
 #include <iostream>
 
+#include "smkCommandInfo.h"
+
 int main(int argc, const char** argv) {
 
     const char USAGE[] =
-    R"(Usage: smk [-help] [--version] <command> [<args>...]
+            R"(Usage: smk [-help] [--version] <command> [<args>...]
 
-        Options:
-          -h --help     Show this screen.
-          -v --version     Show version.
-
-
-        smk in a basic set of tools for medical images manipulation.
-
-        The image files format supported are the one readable with the ITK library,"
-        see https://itk.org/Wiki/ITK/File_Formats for more details.
+            Options:
+            -h --help     Show this screen.
+            -v --version     Show version.
 
 
-        The available commands are:"
+            smk is a basic set of tools for medical images manipulation.
+
+            The image files format supported are the one readable with the ITK library,"
+            see https://itk.org/Wiki/ITK/File_Formats for more details.
+
+
+            The available commands are:"
             info:           Provide basic informations on an images
-    )";
+            )";
     std::vector<std::string> const& std_args = {argv + 1, argv + argc};
     bool show_help = true;
     std::string smk_version= std::string("smk version ") + smk_VERSION;
@@ -33,14 +35,20 @@ int main(int argc, const char** argv) {
                              smk_version,
                              option_first);
 
+    smk::Command::Base* cmd;
     std::string command = args["<command>"].asString();
     if(command == "info") {
-
+        cmd = new smk::Command::Info;
     }
     else {
         std::cout << "smk: '" << command << "' is not a smk command. See 'smk --help'."
                   <<std::endl;
+        return EXIT_FAILURE;
     }
+    cmd->execute(std_args,
+                 smk_version,
+                 option_first);
+    delete cmd;
 
     return EXIT_SUCCESS;
 }

@@ -51,12 +51,16 @@ include(${Docopt_USE_FILE})
 ##
 set(CPP_FILES
   main.cpp
-  smkInfo.cpp
+  smkCommandBase.cpp
+  smkCommandInfo.cpp
   )
 
 set(HEADER_FILES
   smkIO.h
-  smkInfo.h
+  smkCommandBase.h
+  smkCommandInfo.h
+  smkIO.h
+  smkImageTypeHelpers.h
   )
 
 set(PROJECT_FILES
