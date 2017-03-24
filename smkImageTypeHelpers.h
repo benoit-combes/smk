@@ -89,7 +89,7 @@ switch (IO->GetNumberOfComponents())\
 {\
 case 0:\
     {\
-        std::string msg = "Number of Component not supported: 0"\
+        std::string msg = "Number of Component not supported: 0";\
         itk::ExceptionObject excp(__FILE__, __LINE__, msg, ITK_LOCATION);\
         throw excp;\
         break;\
@@ -125,9 +125,11 @@ case 1:\
     function<itk::Image<ComponentType, dimension> >(__VA_ARGS__);\
     break;\
 case 3:\
-    function<itk::Image<itk::Vector<ComponentType, 3>, 1> >(__VA_ARGS__);\
+    function<itk::Image<itk::Vector<ComponentType, 3>, dimension> >(__VA_ARGS__);\
+    break;\
 case 6:\
-    function<itk::Image<itk::Vector<ComponentType, 6>, 1> >(__VA_ARGS__);\
+    function<itk::Image<itk::Vector<ComponentType, 6>, dimension> >(__VA_ARGS__);\
+    break;\
 default:\
     std::string msg = "Number of Component not supported: " + std::to_string(IO->GetNumberOfComponents());\
     itk::ExceptionObject excp(__FILE__, __LINE__, msg, ITK_LOCATION);\
