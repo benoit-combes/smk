@@ -7,6 +7,8 @@
 
 #include <itkImageIOFactory.h>
 
+#include <iomanip>
+
 namespace smk {
 namespace Command {
 
@@ -59,7 +61,42 @@ void Info::_retreive_nb_component()
 template <class ImageType>
 void Info::_print_info()
 {
-    std::cout << IO::read<ImageType>(m_filename);
+    typename ImageType::Pointer img = IO::read<ImageType>(m_filename);
+    typename ImageType::RegionType extent = img->GetLargestPossibleRegion();
+    unsigned int dim = extent.GetImageDimension();
+    std::string t_mark = "#########################\n### - ";
+    std::string u_mark = "";
+
+    std::cout << t_mark << "Dimension:" << u_mark << std::endl << dim << std::endl << std::endl;
+
+    std::cout << t_mark << "Index:" << u_mark  << std::endl << extent.GetIndex() << std::endl << std::endl;
+
+    std::cout << t_mark << "Size:" << u_mark  << std::endl << extent.GetSize() << std::endl << std::endl;
+
+    std::cout << t_mark << "Spacing:" << u_mark  << std::endl << img->GetSpacing() << std::endl << std::endl;
+
+    std::cout << t_mark << "Origin:" << u_mark  << std::endl << img->GetOrigin() << std::endl << std::endl;
+
+    typename ImageType::DirectionType dir = img->GetDirection();
+    std::cout << t_mark << "Direction:" << u_mark  << std::endl;
+    for (unsigned int i = 0; i < dim; ++i)
+    {
+        std::cout << "|" << dir[i][0];
+        for (unsigned int j = 1; j < dim; ++j)
+            std::cout << std::setw(8) << dir[i][j];
+        std::cout << "|" << std::endl;
+    }
+    std::cout << std::endl;
+
+    typename ImageType::DirectionType invdir = img->GetInverseDirection();
+   std::cout << t_mark << "Inverse Direction: " << u_mark  << std::endl;
+    for (unsigned int i = 0; i < dim; ++i)
+    {
+        std::cout << "|" << invdir[i][0];
+        for (unsigned int j = 1; j < dim; ++j)
+            std::cout << std::setw(8) << invdir[i][j];
+        std::cout << "|" << std::endl;
+    }
 }
 
 } // EON Command
