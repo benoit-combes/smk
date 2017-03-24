@@ -89,7 +89,7 @@ switch (IO->GetNumberOfComponents())\
 {\
 case 0:\
     {\
-        std::string msg = "Number of Component not supported: 0"\
+        std::string msg = "Number of Component not supported: 0";\
         itk::ExceptionObject excp(__FILE__, __LINE__, msg, ITK_LOCATION);\
         throw excp;\
         break;\
