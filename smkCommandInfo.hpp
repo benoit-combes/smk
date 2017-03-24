@@ -64,7 +64,7 @@ void Info::_print_info()
     typename ImageType::Pointer img = IO::read<ImageType>(m_filename);
     typename ImageType::RegionType extent = img->GetLargestPossibleRegion();
     unsigned int dim = extent.GetImageDimension();
-    std::string t_mark = "#########################\n### - ";
+    std::string t_mark = "##############################\n### - ";
     std::string u_mark = "";
 
     std::cout << t_mark << "Dimension:" << u_mark << std::endl << dim << std::endl << std::endl;
@@ -94,7 +94,7 @@ void Info::_print_info()
     {
         std::cout << "|" << invdir[i][0];
         for (unsigned int j = 1; j < dim; ++j)
-            std::cout << std::setw(8) << invdir[i][j];
+            std::cout << std::setw(10) << invdir[i][j];
         std::cout << "|" << std::endl;
     }
 }
