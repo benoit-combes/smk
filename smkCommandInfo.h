@@ -25,6 +25,8 @@ class Info : public Base
     template <typename ImageType>
     void _print_info();
 
+    template <typename MatrixType>
+    void _print_matrix(MatrixType matrix);
 };
 
 } // EON Command
