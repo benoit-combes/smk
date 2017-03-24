@@ -22,7 +22,7 @@ create_IO(std::string filename)
     return io;
 }
 
-template <class ImageType>
+template <typename ImageType>
 typename itk::SmartPointer<ImageType>
 read(std::string filename) {
     typedef itk::ImageFileReader<ImageType> ReaderType;
@@ -37,7 +37,7 @@ read(std::string filename) {
     return img;
 }
 
-template <class OutputImageType>
+template <typename OutputImageType>
 void
 write(std::string filename, OutputImageType* img) {
     typedef itk::ImageFileWriter<OutputImageType> WriterType;

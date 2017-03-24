@@ -53,8 +53,7 @@ void Info::_retreive_nb_dimension()
 template <class ComponentType, int dimension>
 void Info::_retreive_nb_component()
 {
-//    SMK_RETRIEVE_NUMBER_OF_COMPONENTS(m_IO, ComponentType, dimension, _print_info)
-    SMK_CHECK_IF_COMPONENTS_ARE_VECTORS(m_IO, ComponentType, dimension, _print_info)
+    SMK_RETRIEVE_NUMBER_OF_COMPONENTS(m_IO, ComponentType, dimension, _print_info)
 }
 
 template <class ImageType>

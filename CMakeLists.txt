@@ -60,10 +60,10 @@ set(TEMPLATE_FILES
 
 set(HEADER_FILES
   smkIO.h
+  smkImage.h
+  smkImageTypeHelpers.h
   smkCommandBase.h
   smkCommandInfo.h
-  smkIO.h
-  smkImageTypeHelpers.h
   )
 
 set(PROJECT_FILES
