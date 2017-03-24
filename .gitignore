@@ -30,3 +30,6 @@
 
 #Qt Project
 *.user
+
+# Save
+*.autosave
