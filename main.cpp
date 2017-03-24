@@ -5,6 +5,7 @@
 #include "smkCommandInfo.h"
 
 int main(int argc, const char** argv) {
+    int return_code = EXIT_FAILURE;
 
     const char USAGE[] =
             R"(Usage: smk [-help] [--version] <command> [<args>...]
@@ -45,10 +46,10 @@ int main(int argc, const char** argv) {
                   <<std::endl;
         return EXIT_FAILURE;
     }
-    cmd->execute(std_args,
-                 smk_version,
-                 option_first);
+    return_code = cmd->execute(std_args,
+                               smk_version,
+                               option_first);
     delete cmd;
 
-    return EXIT_SUCCESS;
+    return return_code;
 }

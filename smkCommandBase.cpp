@@ -3,7 +3,7 @@
 namespace smk {
 namespace Command {
 
-void Base::execute(std::vector<std::string> const& argv,
+int Base::execute(std::vector<std::string> const& argv,
                    std::string version,
                    bool option_first)
 {
@@ -13,7 +13,7 @@ void Base::execute(std::vector<std::string> const& argv,
                              true,          // show help
                              version,
                              option_first);
-    this->_execute(args);
+    return this->_execute(args);
 }
 
 } // EON Command

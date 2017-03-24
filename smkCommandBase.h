@@ -30,13 +30,19 @@ public:
     Base(){}
     virtual ~Base(){}
 
-    void execute(std::vector<std::string> const& argv,
+    int execute(std::vector<std::string> const& argv,
                  std::string version,
                  bool option_first);
 
 protected:
     virtual std::string _doc() = 0;
-    virtual void _execute(std::map<std::string, docopt::value> args) = 0;
+    /**
+     * @brief _execute implementation of the piece of code that you want
+     * to be executed by your command
+     * @param args a docopt maping of the command line arguments
+     * @return return code of the command (probably EXIT_FAILURE or EXIT_SUCCESS)
+     */
+    virtual int _execute(std::map<std::string, docopt::value> args) = 0;
 };
 
 }// EON Command

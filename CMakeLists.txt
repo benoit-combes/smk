@@ -52,7 +52,10 @@ include(${Docopt_USE_FILE})
 set(CPP_FILES
   main.cpp
   smkCommandBase.cpp
-  smkCommandInfo.cpp
+  )
+
+set(TEMPLATE_FILES
+  smkCommandInfo.hpp
   )
 
 set(HEADER_FILES
@@ -64,8 +67,9 @@ set(HEADER_FILES
   )
 
 set(PROJECT_FILES
-  ${HEADER_FILES}
   ${CPP_FILES}
+  ${TEMPLATE_FILES}
+  ${HEADER_FILES}
   )
 
 ##############################################################################
