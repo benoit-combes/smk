@@ -32,12 +32,10 @@ int Info::_execute(std::map<std::string, docopt::value> args)
         std::cerr << "Itk could not find suitable IO factory for the input" << std::endl;
         return EXIT_FAILURE;
     }
-    try
-    {
+    try {
         SMK_RETRIEVE_COMPONENT_TYPE(m_IO, _retreive_nb_dimension)
     }
-    catch ( itk::ExceptionObject & err )
-    {
+    catch ( itk::ExceptionObject & err ) {
         std::cerr << "smk cannot show image information, be sure to use valid arguments..." << std::endl;
         std::cerr << err << std::endl;
         return EXIT_FAILURE;
@@ -46,19 +44,19 @@ int Info::_execute(std::map<std::string, docopt::value> args)
     return EXIT_SUCCESS;
 }
 
-template <class ComponentType>
+template <typename ComponentType>
 void Info::_retreive_nb_dimension()
 {
     SMK_RETRIEVE_NUMBER_OF_DIMENSIONS(m_IO, ComponentType, _retreive_nb_component)
 }
 
-template <class ComponentType, int dimension>
+template <typename ComponentType, int dimension>
 void Info::_retreive_nb_component()
 {
     SMK_RETRIEVE_NUMBER_OF_COMPONENTS(m_IO, ComponentType, dimension, _print_info)
 }
 
-template <class ImageType>
+template <typename ImageType>
 void Info::_print_info()
 {
     typename ImageType::Pointer img = IO::read<ImageType>(m_filename);
@@ -79,8 +77,8 @@ void Info::_print_info()
 
     typename ImageType::DirectionType dir = img->GetDirection();
     std::cout << t_mark << "Direction:" << u_mark  << std::endl;
-    for (unsigned int i = 0; i < dim; ++i)
-    {
+
+    for (unsigned int i = 0; i < dim; ++i) {
         std::cout << "|" << dir[i][0];
         for (unsigned int j = 1; j < dim; ++j)
             std::cout << std::setw(8) << dir[i][j];
@@ -89,9 +87,9 @@ void Info::_print_info()
     std::cout << std::endl;
 
     typename ImageType::DirectionType invdir = img->GetInverseDirection();
-   std::cout << t_mark << "Inverse Direction: " << u_mark  << std::endl;
-    for (unsigned int i = 0; i < dim; ++i)
-    {
+    std::cout << t_mark << "Inverse Direction: " << u_mark  << std::endl;
+
+    for (unsigned int i = 0; i < dim; ++i) {
         std::cout << "|" << invdir[i][0];
         for (unsigned int j = 1; j < dim; ++j)
             std::cout << std::setw(10) << invdir[i][j];

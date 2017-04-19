@@ -7,7 +7,8 @@
 namespace smk {
 namespace Command {
 
-class Info : public Base {
+class Info : public Base
+{
 
     std::string m_filename;
     itk::ImageIOBase::Pointer m_IO;
@@ -15,13 +16,13 @@ class Info : public Base {
     virtual std::string _doc();
     virtual int _execute(std::map<std::string, docopt::value> args);
 
-    template <class ComponentType>
+    template <typename ComponentType>
     void _retreive_nb_dimension();
 
-    template <class ComponentType, int dimension>
+    template <typename ComponentType, int dimension>
     void _retreive_nb_component();
 
-    template <class ImageType>
+    template <typename ImageType>
     void _print_info();
 
 };

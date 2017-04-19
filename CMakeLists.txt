@@ -56,6 +56,7 @@ set(CPP_FILES
 
 set(TEMPLATE_FILES
   smkCommandInfo.hpp
+  smkCommandMath.hpp
   )
 
 set(HEADER_FILES
@@ -63,6 +64,7 @@ set(HEADER_FILES
   smkImageTypeHelpers.h
   smkCommandBase.h
   smkCommandInfo.h
+  smkCommandMath.h
   )
 
 set(PROJECT_FILES
