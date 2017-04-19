@@ -30,8 +30,11 @@
 
 #Qt Project
 *.user
+*.user.*
 
 # Save
 *.autosave
 
-
+# Misc
+*.directory
+*.idea/
