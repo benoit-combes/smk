@@ -78,9 +78,8 @@ void Info::_print_info()
     std::cout << t_mark << "Origin:" << u_mark  << std::endl << img->GetOrigin() << std::endl << std::endl;
 
     typename ImageType::DirectionType dir = img->GetDirection();
-    std::cout << t_mark << "Direction:" << u_mark  << std::endl;    this->_print_matrix<typename ImageType::DirectionType>(dir);
+    std::cout << t_mark << "Direction:" << u_mark  << std::endl;
     this->_print_matrix<typename ImageType::DirectionType>(dir);
-    
     std::cout << std::endl;
 
     typename ImageType::DirectionType invdir = img->GetInverseDirection();
