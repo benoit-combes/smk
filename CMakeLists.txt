@@ -57,6 +57,7 @@ set(CPP_FILES
 set(TEMPLATE_FILES
   smkCommandInfo.hpp
   smkCommandMath.hpp
+  smkCommandWrite.hpp
   )
 
 set(HEADER_FILES
@@ -65,6 +66,7 @@ set(HEADER_FILES
   smkCommandBase.h
   smkCommandInfo.h
   smkCommandMath.h
+  smkCommandWrite.h
   )
 
 set(PROJECT_FILES

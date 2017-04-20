@@ -11,7 +11,7 @@ class Math : public Base
     std::string m_out;
     std::string m_input1;
     std::string m_operator;
-    std::string m_type;
+    std::string m_component;
     std::string m_input2;
     double m_constant;
 

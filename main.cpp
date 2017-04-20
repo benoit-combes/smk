@@ -4,6 +4,7 @@
 
 #include "smkCommandInfo.h"
 #include "smkCommandMath.h"
+#include "smkCommandWrite.h"
 
 int main(int argc, const char** argv) {
     int return_code = EXIT_FAILURE;
@@ -25,6 +26,8 @@ int main(int argc, const char** argv) {
             The available commands are:"
             info:           Provide basic informations on an images
             math:           Perform mathematic operation: +, -, *, /...
+            write           Write a new image from a given input, allow to change file format,
+                            compoenent type, geometry, etc.
             )";
     std::vector<std::string> const& std_args = {argv + 1, argv + argc};
     bool show_help = true;
@@ -42,11 +45,11 @@ int main(int argc, const char** argv) {
     std::string command = args["<command>"].asString();
     if(command == "info") {
         cmd = new smk::Command::Info;
-    }
-    else if(command == "math") {
+    } else if(command == "math") {
         cmd = new smk::Command::Math;
-    }
-    else {
+    } else if(command == "write") {
+        cmd = new smk::Command::Write;
+    } else {
         std::cout << "smk: '" << command << "' is not a smk command. See 'smk --help'."
                   <<std::endl;
         return EXIT_FAILURE;

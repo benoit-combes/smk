@@ -12,7 +12,7 @@ int Base::execute(std::vector<std::string> const& argv,
                              argv,
                              true,          // show help
                              version,
-                             option_first);
+                             false);
     return this->_execute(args);
 }
 

@@ -17,21 +17,28 @@
 switch (IO->GetComponentType())\
 {\
     case itk::ImageIOBase::UCHAR:\
-        std::cerr << "Component type detected is 'UCHAR', smk only use 'char', overflow may happen" << std::endl;\
+        function<unsigned char>(__VA_ARGS__);\
+        break;\
     case itk::ImageIOBase::CHAR:\
         function<char>(__VA_ARGS__);\
         break;\
     case itk::ImageIOBase::UINT:\
-        std::cerr << "Component type detected is 'UINT', smk only use 'unsigned short'.\n"\
-                     "Undetermine behavor may happen." << std::endl;\
+        function<unsigned int>(__VA_ARGS__);\
+        break;\
+    case itk::ImageIOBase::INT:\
+        function<int>(__VA_ARGS__);\
+        break;\
     case itk::ImageIOBase::USHORT:\
         function<unsigned short>(__VA_ARGS__);\
         break;\
-    case itk::ImageIOBase::INT:\
-        std::cerr << "Component type detected is 'INT', smk only use 'short'."\
-                     "Undetermine behavor may happen" << std::endl;\
     case itk::ImageIOBase::SHORT:\
         function<short>(__VA_ARGS__);\
+        break;\
+    case itk::ImageIOBase::ULONG:\
+        function<unsigned long>(__VA_ARGS__);\
+        break;\
+    case itk::ImageIOBase::LONG:\
+        function<long>(__VA_ARGS__);\
         break;\
     case itk::ImageIOBase::FLOAT:\
         function<float>(__VA_ARGS__);\

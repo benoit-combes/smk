@@ -16,37 +16,45 @@ namespace Command {
 
 std::string Math::_doc()
 {
-    const char USAGE[] =
-            R"(Usage: smk math [--type=<type] <output> = <input_1> <operator> <input_2>
+    const char USAGE[] =R"(
+Usage:
+    smk math [options] <output> = <input_1> <operator> <input_2>
 
-            Options:
-            --type=<type>  type of the output [default: FLOAT].
+Options:
+    -c <type>, --component_type <type>       Component type of the output [default: FLOAT].
 
-            Perform basic mathematical operation between the image given as input and an operand."
-            Give a numeric constant as the operand is the same as give an image filled with the constant.
-            Available operators are:
 
-            - '+' pixel wise addition of tow images
-            - '-' pixel wise substraction of tow images
-            - '*' pixel wise multiplication of tow images
-            - '/' pixel wise division of tow images
-            - '^' Compute the powers of tow images"
+#######################################################################################
 
-            The option type let you decide the component type of the output image."
-            "Available types are:"
+Perform basic mathematical operation between the image given as input and an operand.
+Give a numeric constant as the operand is the same as give an image filled with the constant.
+Available operators are:
 
-            - 'UCHAR'
-            - 'CHAR'
-            - 'UINT'
-            - 'INT'
-            - 'SHORT'
-            - 'USHORT'
-            - 'LONG'
-            - 'ULONG'
-            - 'FLOAT'
-            - 'DOUBLE'
+    - '+' pixel wise addition of tow images
+    - '-' pixel wise substraction of tow images
+    - '*' pixel wise multiplication of tow images
+    - '/' pixel wise division of tow images
+    - '^' Compute the powers of tow images
 
-            )";
+Example: '>>> smk math I3.nrrd = I1.nrrd + I2.nrrd'
+Compute the sum of I1 and I2 images.
+
+The option type let you decide the component type of the output image.
+Available types are:
+
+    C++ TYPE            VALUE
+    ----------------------------------
+    unsigned char       'UCHAR'
+    char                'CHAR'
+    unsigned int        'UINT'
+    int                 'INT'
+    short               'SHORT'
+    unsigned short      'USHORT'
+    long                'LONG'
+    unsigned long       'ULONG'
+    float               'FLOAT'
+    double              'DOUBLE'
+)";
     return USAGE;
 }
 
@@ -63,18 +71,18 @@ int Math::_execute(std::map<std::__cxx11::string, docopt::value> args)
         std::cerr << "Operator: '" << m_operator << "' is invalid."<< std::endl;
         return EXIT_FAILURE;
     }
-    m_type = args["--type"].asString();
-    if(m_type != "UCHAR" &&
-            m_type != "CHAR" &&
-            m_type != "UINT" &&
-            m_type != "INT" &&
-            m_type != "SHORT" &&
-            m_type != "USHORT" &&
-            m_type != "LONG" &&
-            m_type != "ULONG" &&
-            m_type != "FLOAT" &&
-            m_type != "DOUBLE"){
-        std::cerr << "Option --type: '" << m_operator << "' is invalid."<< std::endl;
+    m_component = args["--component_type"].asString();
+    if(m_component != "UCHAR" &&
+            m_component != "CHAR" &&
+            m_component != "UINT" &&
+            m_component != "INT" &&
+            m_component != "SHORT" &&
+            m_component != "USHORT" &&
+            m_component != "LONG" &&
+            m_component != "ULONG" &&
+            m_component != "FLOAT" &&
+            m_component != "DOUBLE"){
+        std::cerr << "Option --component_type: '" << m_component << "' is invalid."<< std::endl;
         return EXIT_FAILURE;
     }
 
@@ -114,34 +122,34 @@ void Math::_check_if_components_are_vectors()
     case 1:
     {
         typedef itk::Image<ComponentType, Dimension> InputType;
-        if(m_type == "UCHAR"){
+        if(m_component == "UCHAR"){
             typedef itk::Image<unsigned char, Dimension> OutputType;
             _create_filter<InputType, OutputType>();
-        } else if (m_type == "CHAR") {
+        } else if (m_component == "CHAR") {
             typedef itk::Image<char, Dimension> OutputType;
             _create_filter<InputType, OutputType>();
-        } else if (m_type == "UINT") {
+        } else if (m_component == "UINT") {
             typedef itk::Image<unsigned int, Dimension> OutputType;
             _create_filter<InputType, OutputType>();
-        } else if (m_type == "INT") {
+        } else if (m_component == "INT") {
             typedef itk::Image<int, Dimension> OutputType;
             _create_filter<InputType, OutputType>();
-        } else if (m_type == "USHORT") {
+        } else if (m_component == "USHORT") {
             typedef itk::Image<unsigned short, Dimension> OutputType;
             _create_filter<InputType, OutputType>();
-        } else if (m_type == "SHORT") {
+        } else if (m_component == "SHORT") {
             typedef itk::Image<short, Dimension> OutputType;
             _create_filter<InputType, OutputType>();
-        } else if (m_type == "ULONG") {
+        } else if (m_component == "ULONG") {
             typedef itk::Image<unsigned long, Dimension> OutputType;
             _create_filter<InputType, OutputType>();
-        } else if (m_type == "LONG") {
+        } else if (m_component == "LONG") {
             typedef itk::Image<long, Dimension> OutputType;
             _create_filter<InputType, OutputType>();
-        } else if (m_type == "FLOAT") {
+        } else if (m_component == "FLOAT") {
             typedef itk::Image<float, Dimension> OutputType;
             _create_filter<InputType, OutputType>();
-        } else if (m_type == "DOUBLE") {
+        } else if (m_component == "DOUBLE") {
             typedef itk::Image<double, Dimension> OutputType;
             _create_filter<InputType, OutputType>();
         }
